@@ -29,6 +29,7 @@ def sign_up(request):
         response.addError("Password too short")
     if response.isSuccess:
         UserModel.objects.create_user(email, password)
+        return sign_in(request)
     return response.to_http_response()
 
 @csrf_exempt
